@@ -1,0 +1,7 @@
+---
+# tasks file for dynamic_motd
+- name: Configure Dynamic motd
+  hosts: alma2
+  become: yes
+  roles:
+    - dynamic_motd

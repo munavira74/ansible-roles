@@ -1,0 +1,34 @@
+---
+# tasks file for httpd-hosting
+- name: installing httpd
+  dnf:
+    name: "{{pack}}"
+    state: present
+- name: enabling
+  service:
+    name: "{{pack}}"
+    enabled: yes
+    state: started
+- name: copying
+  copy:
+    src: test
+    dest: /var/www/html
+  notify: restart httpd
+- name: templating
+  template:
+    src: test.conf.j2
+    dest: /etc/httpd/conf.d/test.conf
+  notify: restart httpd
+- name: add http, https
+  firewalld:
+    service: "{{item}}"
+    state: enabled
+    permanent: true
+  notify: firewall
+  loop:
+    - http
+    - https
+- name: selinux
+  selinux:
+    policy: targeted
+    state: permissive

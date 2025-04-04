@@ -1,0 +1,4 @@
+- name: httpd hosting
+  hosts: alma1
+  roles:
+    - httpd-hosting

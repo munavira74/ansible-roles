@@ -1,0 +1,4 @@
+- name: nginx hosting
+  hosts: alma2
+  roles:
+    - nginx-hosting

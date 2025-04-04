@@ -1,0 +1,10 @@
+---
+# handlers file for httpd-hosting
+- name: restart httpd
+  service:
+    name: "{{pack}}"
+    state: reloaded
+- name: firewall
+  service:
+    name: firewalld
+    state: reloaded
